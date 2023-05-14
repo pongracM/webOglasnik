@@ -1,4 +1,4 @@
-# webOglasnik
+# webOglasnik naredbe za bazu
 
 naredbe za napraviti bazu
 
