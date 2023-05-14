@@ -1,0 +1,34 @@
+﻿@model IEnumerable<webOglasnik.Models.Kategorija>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Sifra }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Sifra }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Sifra })
+        </td>
+    </tr>
+}
+
+</table>

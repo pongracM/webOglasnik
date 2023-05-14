@@ -1,0 +1,67 @@
+﻿@model webOglasnik.Models.Oglas
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Oglas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumObjave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatumObjave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrajeDo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrajeDo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OglasKategorija.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OglasKategorija.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cijena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cijena)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
