@@ -44,6 +44,7 @@ namespace webOglasnik.Controllers
         // POST: Oglas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Naziv,Opis,DatumObjave,TrajeDo,Cijena")] Oglas oglas)
