@@ -16,7 +16,9 @@
 
     <p>
         Naziv: @Html.TextBox("naziv")
-        
+        @Html.DropDownList("Kategorija", new SelectList(ViewBag.Kategorije, "Sifra", "Naziv", ""), "Sve Kategorije")
+
+        <input type="submit" value="Traži" />
     </p>
 
     }

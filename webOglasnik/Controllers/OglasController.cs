@@ -12,14 +12,26 @@ namespace webOglasnik.Controllers
 {
     public class OglasController : Controller
     {
-        BazaDbContext db = new BazaDbContext();
+        public BazaDbContext db = new BazaDbContext();
 
         // GET: Oglas
-        public ActionResult Index()
+        public ActionResult Index(string naziv, string kategorija)
         {
-            return View(db.PopisOglasa.ToList());
-        }
+            var oglasi = db.PopisOglasa.ToList();
 
+            var kategorijeList = db.PopisKategorija.OrderBy(x=>x.Naziv).ToList();
+            ViewBag.Kategorije = kategorijeList;
+
+            if (!String.IsNullOrWhiteSpace(naziv))
+                oglasi = oglasi.Where(x => x.Naziv.ToUpper().Contains(naziv.ToUpper())).ToList();
+             
+            if (!String.IsNullOrWhiteSpace(kategorija))
+                oglasi = oglasi.Where(x=>x.KategorijaSifra == kategorija).ToList();
+                
+
+            return View(oglasi);
+        }
+        
         // GET: Oglas/Details/5
         public ActionResult Details(int? id)
         {
