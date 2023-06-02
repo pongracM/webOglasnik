@@ -12,7 +12,7 @@ namespace webOglasnik.Controllers
 {
     public class OglasController : Controller
     {
-        private BazaDbContext db = new BazaDbContext();
+        BazaDbContext db = new BazaDbContext();
 
         // GET: Oglas
         public ActionResult Index()
@@ -38,6 +38,10 @@ namespace webOglasnik.Controllers
         // GET: Oglas/Create
         public ActionResult Create()
         {
+            var kategorije = db.PopisKategorija.OrderBy(x => x.Naziv).ToList();
+            kategorije.Insert(0, new Kategorija { Sifra = "", Naziv = "Nedefinirano" });
+            ViewBag.Kategorije = kategorije;
+
             return View();
         }
 
@@ -47,7 +51,7 @@ namespace webOglasnik.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Naziv,Opis,DatumObjave,TrajeDo,Cijena")] Oglas oglas)
+        public ActionResult Create([Bind(Include = "Id,Naziv,KategorijaSifra,Opis,DatumObjave,TrajeDo,Cijena")] Oglas oglas)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +75,11 @@ namespace webOglasnik.Controllers
             {
                 return HttpNotFound();
             }
+
+            var kategorije = db.PopisKategorija.OrderBy(x => x.Naziv).ToList();
+            kategorije.Insert(0, new Kategorija { Sifra = "", Naziv = "Nedefinirano" });
+            ViewBag.Kategorije = kategorije;
+
             return View(oglas);
         }
 
@@ -79,7 +88,7 @@ namespace webOglasnik.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Naziv,Opis,DatumObjave,TrajeDo,Cijena")] Oglas oglas)
+        public ActionResult Edit([Bind(Include = "Id,Naziv,KategorijaSifra,Opis,DatumObjave,TrajeDo,Cijena")] Oglas oglas)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +96,11 @@ namespace webOglasnik.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            var kategorije = db.PopisKategorija.OrderBy(x => x.Naziv).ToList();
+            kategorije.Insert(0, new Kategorija { Sifra = "", Naziv = "Nedefinirano" });
+            ViewBag.Kategorije = kategorije;
+
             return View(oglas);
         }
 

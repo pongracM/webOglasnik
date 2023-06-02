@@ -10,10 +10,24 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using(Html.BeginForm("Index", "Oglas", FormMethod.Get))
+    {
+
+    <p>
+        Naziv: @Html.TextBox("naziv")
+        
+    </p>
+
+    }
+
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OglasKategorija.Naziv)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Opis)
@@ -23,9 +37,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TrajeDo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OglasKategorija.Naziv)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Cijena)
@@ -39,6 +50,9 @@
             @Html.DisplayFor(modelItem => item.Naziv)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.OglasKategorija.Naziv)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Opis)
         </td>
         <td>
@@ -46,9 +60,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TrajeDo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OglasKategorija.Naziv)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Cijena)

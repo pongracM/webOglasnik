@@ -25,6 +25,12 @@ namespace webOglasnik.Models
         [StringLength(75, ErrorMessage = "{0} mora biti duljune maksimalno {1} znakova")]
         public string Naziv { get; set; }
 
+        [Display(Name = "Kategorija")]
+        [Column("kategorija_sifra")]
+        [ForeignKey("OglasKategorija")]
+        public string KategorijaSifra { get; set; }
+        public virtual Kategorija OglasKategorija { get; set; }
+
         [Column("opis")]
         [Display(Name = "Opis")]
         [Required(ErrorMessage = "{0} je obavezan")]
@@ -50,11 +56,7 @@ namespace webOglasnik.Models
         [Required(ErrorMessage = "{0} je obavezna")]
         public int Cijena { get; set; }
 
-        [Display(Name = "Kategorija")]
-        [Column("kategorija_sifra")]
-        [ForeignKey("OglasKategorija")]
-        public string KategorijaSifra { get; set; }
-        public virtual Kategorija OglasKategorija { get; set; }
+       
 
     }
 }
