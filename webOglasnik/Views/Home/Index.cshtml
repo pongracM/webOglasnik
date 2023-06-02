@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Početna";
 }
 
 <main>
@@ -8,19 +8,24 @@
     </section>
 
     <div class="row">
-        <section class="col-md-4">
+        <section class="col-md-3">
             <h2>Popis oglasa</h2>
             @Html.ActionLink("Oglasi", "Index", "Oglas", new { area = "" }, new { @class = "btn btn-dark" })
         </section>
 
-        <section class="col-md-4">
+        <section class="col-md-3">
             <h2>Popis kategorija</h2>
             @Html.ActionLink("Kategorije", "Index", "Kategorija", new { area = "" }, new { @class = "btn btn-dark" })
         </section>
 
-        <section class="col-md-4">
+        <section class="col-md-3">
             <h2>Novi oglas</h2>
-            @Html.ActionLink("Dodaj oglas", "Create", "Oglas", new { area = ""}, new { @class = "btn btn-dark" })
+            @Html.ActionLink("Dodaj oglas", "Create", "Oglas", new { area = "" }, new { @class = "btn btn-dark" })
+        </section>
+
+        <section class="col-md-3">
+            <h2>Popis korisnika</h2>
+            @Html.ActionLink("Korisnici", "Index", "Korisnici", new { area = "" }, new { @class = "btn btn-dark" })
         </section>
     </div>
 </main>

@@ -15,5 +15,7 @@ namespace webOglasnik.Models
     {
         public DbSet<Oglas> PopisOglasa { get; set; }
         public DbSet<Kategorija> PopisKategorija { get; set; }
+        public DbSet<Korisnik> PopisKorisnika { get; set; }
+        public DbSet<Ovlast> PopisOvlasti { get; set; }
     }
 }

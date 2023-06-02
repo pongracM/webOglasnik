@@ -344,13 +344,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategorijaController.cs" />
+    <Compile Include="Controllers\KorisniciController.cs" />
     <Compile Include="Controllers\OglasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Misc\LogiraniKorisnik.cs" />
+    <Compile Include="Misc\LogiraniKorisnikSerializeModel.cs" />
+    <Compile Include="Misc\PasswordHelper.cs" />
     <Compile Include="Models\BazaDbContext.cs" />
     <Compile Include="Models\Kategorija.cs" />
+    <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\KorisnikPrijava.cs" />
     <Compile Include="Models\Oglas.cs" />
+    <Compile Include="Models\Ovlast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -417,6 +424,8 @@
     <Content Include="Views\Kategorija\Details.cshtml" />
     <Content Include="Views\Kategorija\Edit.cshtml" />
     <Content Include="Views\Kategorija\Index.cshtml" />
+    <Content Include="Views\Korisnici\Index.cshtml" />
+    <Content Include="Views\Korisnici\Prijava.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

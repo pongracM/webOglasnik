@@ -1,0 +1,30 @@
+﻿@using webOglasnik.Models
+@model List<Korisnik>
+@{
+    ViewBag.Title = "Popis Korisnika";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewBag.Title</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Korisničko ime</th>
+            <th>Email</th>
+            <th>Prezime i ime</th>
+            <th>Ovlast</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var korisnik in Model)
+        {
+            <tr>
+                <td>@korisnik.KorisnickoIme</td>
+                <td>@korisnik.Email</td>
+                <td>@korisnik.PrezimeIme</td>
+                <td>@(korisnik.Ovlast?.Naziv)</td>
+            </tr>
+        }
+    </tbody>
+</table>
