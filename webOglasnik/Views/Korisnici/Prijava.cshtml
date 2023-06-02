@@ -6,14 +6,12 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Prijava", "Korisnici", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
+@using (Html.BeginForm("Prijava", "Korisnici",
+    new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, null))
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
-
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-
         <div class="form-group">
             @Html.LabelFor(model => model.KorisnickoIme, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-mld-10">

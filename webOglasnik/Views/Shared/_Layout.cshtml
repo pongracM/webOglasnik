@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using webOglasnik.Misc
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,6 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+   
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
             @Html.ActionLink("Web Oglasnik", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
@@ -22,9 +24,21 @@
                     <li>@Html.ActionLink("Kategorije", "Index", "Kategorija", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Korisnici", "Index", "Korisnici", new { area = "" }, new { @class = "nav-link" }))</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink(((User as LogiraniKorisnik).PrezimeIme), "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Odjava", "Odjava", "Korisnici", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Prijava", "Prijava", "Korisnici", new { area = "" }, new { @class = "btn btn-light" })</li>
+                    }
+                </ul>
             </div>
         </div>
     </nav>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

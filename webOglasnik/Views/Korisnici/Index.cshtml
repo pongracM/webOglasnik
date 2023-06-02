@@ -1,11 +1,11 @@
 ﻿@using webOglasnik.Models
 @model List<Korisnik>
 @{
-    ViewBag.Title = "Popis Korisnika";
+    ViewBag.Title = "Popis korisnika";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ViewBag.Title</h2>
+<h2>@ViewBag.Title</h2>
 
 <table class="table table-striped">
     <thead>
@@ -17,13 +17,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var korisnik in Model)
+        @foreach (var k in Model)
         {
             <tr>
-                <td>@korisnik.KorisnickoIme</td>
-                <td>@korisnik.Email</td>
-                <td>@korisnik.PrezimeIme</td>
-                <td>@(korisnik.Ovlast?.Naziv)</td>
+                <td>@k.KorisnickoIme</td>
+                <td>@k.Email</td>
+                <td>@k.PrezimeIme</td>
+                <td>@(k.Ovlast?.Naziv)</td>
             </tr>
         }
     </tbody>
