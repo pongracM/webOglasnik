@@ -52,7 +52,7 @@ namespace webOglasnik.Models
         public DateTime TrajeDo { get; set; }
 
         [Column("cijena")]
-        [Display(Name = "Cijena")]
+        [Display(Name = "Cijena (€)")]
         [Required(ErrorMessage = "{0} je obavezna")]
         public int Cijena { get; set; }
 
