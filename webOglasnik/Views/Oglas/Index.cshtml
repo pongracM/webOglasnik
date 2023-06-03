@@ -1,27 +1,28 @@
-﻿@model IEnumerable<webOglasnik.Models.Oglas>
+﻿@using webOglasnik.Misc
+@model IEnumerable<webOglasnik.Models.Oglas>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Popis oglasa";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Popis oglasa</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj oglas", "Create","", new { @class = "btn btn-dark" })
 </p>
 
-@using(Html.BeginForm("Index", "Oglas", FormMethod.Get))
-    {
+@using (Html.BeginForm("Index", "Oglas", FormMethod.Get))
+{
 
     <p>
         Naziv: @Html.TextBox("naziv")
         @Html.DropDownList("Kategorija", new SelectList(ViewBag.Kategorije, "Sifra", "Naziv", ""), "Sve Kategorije")
 
-        <input type="submit" value="Traži" />
+        <input type="submit" value="Traži" class="btn btn-dark" />
     </p>
 
-    }
+}
 
 <table class="table">
     <tr>
@@ -32,12 +33,6 @@
             @Html.DisplayNameFor(model => model.OglasKategorija.Naziv)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Opis)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatumObjave)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.TrajeDo)
         </th>
         <th>
@@ -46,32 +41,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naziv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OglasKategorija.Naziv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Opis)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatumObjave)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrajeDo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cijena)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OglasKategorija.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrajeDo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cijena)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-dark" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-dark" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })
+            </td>
+        </tr>
+    }
 
 </table>

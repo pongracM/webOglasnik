@@ -1,14 +1,14 @@
 ﻿@model webOglasnik.Models.Oglas
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalji";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>Oglas</h4>
+
+    <h4>Detalji</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -61,7 +61,8 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-dark" }) 
+    @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-dark" })
+</div>

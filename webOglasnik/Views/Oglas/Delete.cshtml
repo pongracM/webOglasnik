@@ -1,15 +1,12 @@
 ﻿@model webOglasnik.Models.Oglas
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Izbriši";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-danger">Jeste li sigurni da želite izbrisati ovaj oglas?</h3>
 <div>
-    <h4>Oglas</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -66,8 +63,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-dark" />
+            @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-dark" })
         </div>
     }
 </div>

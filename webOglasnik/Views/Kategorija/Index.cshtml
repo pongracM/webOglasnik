@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<webOglasnik.Models.Kategorija>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Kategorije";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Kategorije</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj kategoriju", "Create", "", new { @class = "btn btn-dark" })
 </p>
 <table class="table">
     <tr>
@@ -24,9 +24,8 @@
             @Html.DisplayFor(modelItem => item.Naziv)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Sifra }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Sifra }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Sifra })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Sifra }, new { @class = "btn btn-dark" })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Sifra }, new { @class = "btn btn-dark" })
         </td>
     </tr>
 }
