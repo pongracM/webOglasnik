@@ -24,8 +24,8 @@
             @Html.DisplayFor(modelItem => item.Naziv)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Sifra }, new { @class = "btn btn-dark" })
-            @Html.ActionLink("Delete", "Delete", new { id=item.Sifra }, new { @class = "btn btn-dark" })
+            @Html.ActionLink("Uredi", "Edit", new { id=item.Sifra }, new { @class = "btn btn-dark" })
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.Sifra }, new { @class = "btn btn-dark" })
         </td>
     </tr>
 }

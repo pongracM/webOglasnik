@@ -57,9 +57,9 @@
                 @Html.DisplayFor(modelItem => item.Cijena)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-dark" })
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-dark" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })
+                @Html.ActionLink("Detalji", "Details", new { id = item.Id }, new { @class = "btn btn-dark" })
+                @Html.ActionLink("Uredi", "Edit", new { id = item.Id }, new { @class = "btn btn-dark" })
+                @Html.ActionLink("Izbriši", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })
             </td>
         </tr>
     }
