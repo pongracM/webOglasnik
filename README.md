@@ -89,5 +89,10 @@ INSERT INTO korisnici(korisnicko_ime,email,prezime,ime,lozinka,ovlast) VALUES
 ('admin','admin@net.hr','Marić','Jure','jUPY60RIRBTWGhhlm0Q/v+UjmVENpGidU1K9ljHGxRs=','AD'),
 ('pivanic','pivanic@net.hr','Ivanić','Petar','9OGS0TpjNkgD0+dwSB1lpnsrlAZhsobZwZ5cQEtMOPo=','KO');
 
+/*                                 Slike                                                      */
+
+USE web_oglasnik;
+ALTER TABLE oglasi ADD slika VARCHAR(255);
+
 
 *************************************************************************************************************
