@@ -94,5 +94,6 @@ INSERT INTO korisnici(korisnicko_ime,email,prezime,ime,lozinka,ovlast) VALUES
 USE web_oglasnik;
 ALTER TABLE oglasi ADD slika VARCHAR(255);
 
+ALTER TABLE oglasi ADD korisnik VARCHAR(30);
 
 *************************************************************************************************************
