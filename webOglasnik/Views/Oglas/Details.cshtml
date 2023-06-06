@@ -20,60 +20,68 @@
         </div>
     }
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Naziv)
-        </dt>
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Naziv)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Naziv)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Naziv)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OglasKategorija.Naziv)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.OglasKategorija.Naziv)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OglasKategorija.Naziv)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.OglasKategorija.Naziv)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Opis)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Opis)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Opis)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Opis)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DatumObjave)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.Korisnik)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DatumObjave)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.Korisnik)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrajeDo)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.DatumObjave)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrajeDo)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.DatumObjave)
+    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Cijena)
-        </dt>
+    <dt>
+        @Html.DisplayNameFor(model => model.TrajeDo)
+    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cijena)
-        </dd>
+    <dd>
+        @Html.DisplayFor(model => model.TrajeDo)
+    </dd>
 
-    </dl>
+    <dt>
+        @Html.DisplayNameFor(model => model.Cijena)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Cijena)
+    </dd>
+
+</dl>
 </div>
 
 <div>
-    @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+    @if (User.Identity.IsAuthenticated && ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator) || (User as LogiraniKorisnik).KorisnickoIme == Model.Korisnik))
     {
         @Html.ActionLink("Uredi", "Edit", new { id = Model.Id }, new { @class = "btn btn-dark" })
     }

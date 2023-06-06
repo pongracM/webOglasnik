@@ -63,5 +63,8 @@ namespace webOglasnik.Models
         [NotMapped]
         public HttpPostedFileBase ImageFile { get; set; }
 
+        [Column("korisnik")]
+        [Display(Name = "Korisnik")]
+        public string Korisnik { get; set; }
     }
 }

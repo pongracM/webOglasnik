@@ -68,6 +68,25 @@ namespace webOglasnik.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Oglas oglas)
         {
+            if (oglas.ImageFile != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(oglas.ImageFile.FileName);
+                string extension = Path.GetExtension(oglas.ImageFile.FileName);
+
+                if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+                {
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    oglas.SlikaPutanja = "~/Images/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    oglas.ImageFile.SaveAs(fileName);
+                }
+                else
+                {
+                    ModelState.AddModelError("SlikaPutanja", "Nepodržana ekstenzija");
+                }
+
+            }
+
             if (ModelState.IsValid)
             {
                 db.PopisOglasa.Add(oglas);
@@ -131,8 +150,6 @@ namespace webOglasnik.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            
 
             var kategorije = db.PopisKategorija.OrderBy(x => x.Naziv).ToList();
             kategorije.Insert(0, new Kategorija { Sifra = "", Naziv = "Nedefinirano" });

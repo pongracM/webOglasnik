@@ -1,4 +1,5 @@
-﻿@model webOglasnik.Models.Oglas
+﻿@using webOglasnik.Misc
+@model webOglasnik.Models.Oglas
 
 @{
     ViewBag.Title = "Uredi";
@@ -14,6 +15,7 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
+    @Html.Hidden("Korisnik", (User as LogiraniKorisnik).KorisnickoIme)
 
     <div class="form-group">
         @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })

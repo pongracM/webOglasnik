@@ -60,7 +60,7 @@
                 @Html.DisplayFor(modelItem => item.Cijena)
             </td>
             <td>
-                @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+                @if (User.Identity.IsAuthenticated && ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator) || (User as LogiraniKorisnik).KorisnickoIme == item.Korisnik))
                 {
                     @Html.ActionLink("Uredi", "Edit", new { id = item.Id }, new { @class = "btn btn-dark" }) 
                     @Html.ActionLink("Izbriši", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })

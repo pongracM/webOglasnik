@@ -1,14 +1,15 @@
-﻿@model webOglasnik.Models.Oglas
+﻿@using webOglasnik.Misc
+@model webOglasnik.Models.Oglas
 
 @{
     ViewBag.Title = "Novi oglas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Oglas", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    
+                @Html.AntiForgeryToken()
+
 <div class="form-horizontal">
     <h4>Novi oglas</h4>
     <hr />
@@ -20,6 +21,8 @@
             @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    @Html.Hidden("Korisnik", (User as LogiraniKorisnik).KorisnickoIme)
 
     <div class="form-group">
         @Html.LabelFor(model => model.KategorijaSifra, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -52,6 +55,16 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.Cijena, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Cijena, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.SlikaPutanja)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SlikaPutanja, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="ImageFile" class="form-control" />
+            @Html.ValidationMessageFor(model => model.SlikaPutanja, "", new { @class = "text-danger" })
         </div>
     </div>
 
