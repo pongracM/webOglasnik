@@ -1,4 +1,5 @@
-﻿@{
+﻿@using webOglasnik.Misc
+@{
     ViewBag.Title = "Početna";
 }
 
@@ -17,15 +18,20 @@
             <h2>Popis kategorija</h2>
             @Html.ActionLink("Kategorije", "Index", "Kategorija", new { area = "" }, new { @class = "btn btn-dark" })
         </section>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <section class="col-md-3">
+                <h2>Novi oglas</h2>
+                @Html.ActionLink("Dodaj oglas", "Create", "Oglas", new { area = "" }, new { @class = "btn btn-dark" })
+            </section>
+        }
+        @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+        {
+            <section class="col-md-3">
+                <h2>Popis korisnika</h2>
+                @Html.ActionLink("Korisnici", "Index", "Korisnici", new { area = "" }, new { @class = "btn btn-dark" })
+            </section>
+        }
 
-        <section class="col-md-3">
-            <h2>Novi oglas</h2>
-            @Html.ActionLink("Dodaj oglas", "Create", "Oglas", new { area = "" }, new { @class = "btn btn-dark" })
-        </section>
-
-        <section class="col-md-3">
-            <h2>Popis korisnika</h2>
-            @Html.ActionLink("Korisnici", "Index", "Korisnici", new { area = "" }, new { @class = "btn btn-dark" })
-        </section>
     </div>
 </main>

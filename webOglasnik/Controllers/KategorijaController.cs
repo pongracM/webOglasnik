@@ -6,14 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using webOglasnik.Misc;
 using webOglasnik.Models;
 
 namespace webOglasnik.Controllers
 {
+    [Authorize(Roles = OvlastiKorisnik.Administrator)]
     public class KategorijaController : Controller
     {
         private BazaDbContext db = new BazaDbContext();
-
+        
+        [OverrideAuthorization]
+        [AllowAnonymous]
         // GET: Kategorija
         public ActionResult Index()
         {

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<webOglasnik.Models.Kategorija>
+﻿@using webOglasnik.Misc
+@model IEnumerable<webOglasnik.Models.Kategorija>
 
 @{
     ViewBag.Title = "Kategorije";
@@ -6,10 +7,13 @@
 }
 
 <h2>Kategorije</h2>
+@if(User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+{
+    <p>
+        @Html.ActionLink("Dodaj kategoriju", "Create", "", new { @class = "btn btn-dark" })
+    </p>    
+}
 
-<p>
-    @Html.ActionLink("Dodaj kategoriju", "Create", "", new { @class = "btn btn-dark" })
-</p>
 <table class="table">
     <tr>
         <th>
@@ -23,10 +27,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Naziv)
         </td>
-        <td>
-            @Html.ActionLink("Uredi", "Edit", new { id=item.Sifra }, new { @class = "btn btn-dark" })
-            @Html.ActionLink("Izbriši", "Delete", new { id=item.Sifra }, new { @class = "btn btn-dark" })
-        </td>
+        @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+        {
+            <td>
+                @Html.ActionLink("Uredi", "Edit", new { id = item.Sifra }, new { @class = "btn btn-dark" })
+                @Html.ActionLink("Izbriši", "Delete", new { id = item.Sifra }, new { @class = "btn btn-dark" })
+            </td>
+        }
+
     </tr>
 }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,6 +48,7 @@ namespace webOglasnik.Controllers
             return View(oglas);
         }
 
+        [Authorize]
         // GET: Oglas/Create
         public ActionResult Create()
         {
@@ -57,13 +59,14 @@ namespace webOglasnik.Controllers
             return View();
         }
 
+
         // POST: Oglas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Naziv,KategorijaSifra,Opis,DatumObjave,TrajeDo,Cijena")] Oglas oglas)
+        public ActionResult Create(Oglas oglas)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +77,7 @@ namespace webOglasnik.Controllers
 
             return View(oglas);
         }
-
+        [Authorize]
         // GET: Oglas/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -98,16 +101,38 @@ namespace webOglasnik.Controllers
         // POST: Oglas/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Naziv,KategorijaSifra,Opis,DatumObjave,TrajeDo,Cijena")] Oglas oglas)
+        public ActionResult Edit(Oglas oglas)
         {
+            if (oglas.ImageFile != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(oglas.ImageFile.FileName);
+                string extension = Path.GetExtension(oglas.ImageFile.FileName);
+
+                if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+                {
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    oglas.SlikaPutanja = "~/Images/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    oglas.ImageFile.SaveAs(fileName);
+                }
+                else
+                {
+                    ModelState.AddModelError("SlikaPutanja", "Nepodržana ekstenzija");
+                }
+
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(oglas).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            
 
             var kategorije = db.PopisKategorija.OrderBy(x => x.Naziv).ToList();
             kategorije.Insert(0, new Kategorija { Sifra = "", Naziv = "Nedefinirano" });
@@ -117,6 +142,7 @@ namespace webOglasnik.Controllers
         }
 
         // GET: Oglas/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -132,6 +158,7 @@ namespace webOglasnik.Controllers
         }
 
         // POST: Oglas/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

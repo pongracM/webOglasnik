@@ -11,6 +11,7 @@ using webOglasnik.Models;
 
 namespace webOglasnik.Controllers
 {
+    [Authorize(Roles = OvlastiKorisnik.Administrator)]
     public class KorisniciController : Controller
     {
         BazaDbContext db = new BazaDbContext();
@@ -21,6 +22,7 @@ namespace webOglasnik.Controllers
                 .OrderBy(x => x.SifraOvlasti).ThenBy(x => x.Prezime).ToList();
             return View(listaKorisnika);
         }
+        
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Prijava(string returnUrl)
@@ -29,6 +31,7 @@ namespace webOglasnik.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -70,7 +73,9 @@ namespace webOglasnik.Controllers
             ModelState.AddModelError("", "Neispravno korisničko ime ili lozinka");
             return View(model);
         }
-
+        
+        [OverrideAuthorization]
+        [Authorize]
         public ActionResult Odjava()
         {
             FormsAuthentication.SignOut();

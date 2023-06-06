@@ -56,7 +56,12 @@ namespace webOglasnik.Models
         [Required(ErrorMessage = "{0} je obavezna")]
         public int Cijena { get; set; }
 
-       
+        [Display(Name = "Fotografija")]
+        [Column("slika")]
+        public string SlikaPutanja { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
 
     }
 }

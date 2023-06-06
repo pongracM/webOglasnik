@@ -7,10 +7,13 @@
 }
 
 <h2>Popis oglasa</h2>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Dodaj oglas", "Create", "", new { @class = "btn btn-dark" })
+    </p>
+}
 
-<p>
-    @Html.ActionLink("Dodaj oglas", "Create","", new { @class = "btn btn-dark" })
-</p>
 
 @using (Html.BeginForm("Index", "Oglas", FormMethod.Get))
 {
@@ -57,9 +60,12 @@
                 @Html.DisplayFor(modelItem => item.Cijena)
             </td>
             <td>
+                @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administrator))
+                {
+                    @Html.ActionLink("Uredi", "Edit", new { id = item.Id }, new { @class = "btn btn-dark" }) 
+                    @Html.ActionLink("Izbriši", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })
+                }
                 @Html.ActionLink("Detalji", "Details", new { id = item.Id }, new { @class = "btn btn-dark" })
-                @Html.ActionLink("Uredi", "Edit", new { id = item.Id }, new { @class = "btn btn-dark" })
-                @Html.ActionLink("Izbriši", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })
             </td>
         </tr>
     }
