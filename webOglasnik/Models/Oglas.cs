@@ -10,7 +10,6 @@ namespace webOglasnik.Models
 {
     
     [Table("oglasi")]
-
     public class Oglas
     {
         [Key]
